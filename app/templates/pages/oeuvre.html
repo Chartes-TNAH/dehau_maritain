@@ -1,0 +1,42 @@
+{% extends "conteneur.html" %}
+
+{% block titre %}
+    {%if oeuvre %}| Oeuvre : {{oeuvre.titre}} {% endif %}
+{% endblock %}
+
+{% block corps %}
+{% if oeuvre %}
+    <div>
+        <header>
+            <h1 id="titre1">{{oeuvre.titre}}</h1>
+        </header>
+        <dl>
+            <dt>Intellectuel</dt><dd><a href="{{url_for('intellectuell', id_intel=intellectuell.id_intel)}}">{{intellectuell.prenom}} {{intellectuell.nom}}</a></dd>
+            <dt>Année de la publication</dt>{% if not oeuvre.date_publ %}<dd>Non renseignée</dd>{% else %}<dd>{{oeuvre.date_publ}}</dd>{% endif %}
+        </dl>
+    </div>
+    <br/>
+    <div>
+        <header>
+            <h2 id="titre2">Résumé de l'oeuvre</h2>
+        </header>
+        {% if oeuvre.resume %}
+        <p>{{oeuvre.resume}}</p>
+        {% else %}
+        <p>Aucun résumé n'est enregistré. Pour ajouter un résumé de l'oeuvre,  {% if current_user.is_authenticated %}Cliquer sur <a href="{{url_for('modification_oeuvre', identifier=oeuvre.id_publ)}}">Modifiez la notice</a> pour ajouter un résumé ou d'autres informations sur l'oeuvre !{% else %}Inscrivez-vous <a href="{{url_for('inscription')}}">ici</a> pour enrichir le site.{% endif %}</p>
+        {% endif %}
+    </div>
+    {% if current_user.is_authenticated %}
+    <div>
+        <p style="text-align:center">
+            <a href="{{url_for('modification_oeuvre', identifier=oeuvre.id_publ)}}">Modifier la notice</a> || <a href="{{url_for('suppression_oeuvre', identifier=oeuvre.id_publ)}}">Supprimer la notice</a>
+        </p>
+    </div>       
+    {% endif %}
+
+{% else %}
+<div>
+    <p style="text-align:center">La notice que vous recherchez n'existe pas ou plus.</p>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "headerfooter.html" %}
+
+{% block titre %}| Suppression de l'oeuvre {{oeuvre.titre}}{%endblock%}
+
+{% block corps %}
+    <header>
+        <br/>
+        <br/>
+        <h2 style="text-align:center ">Suppression de l'oeuvre {{oeuvre.titre}}</h2>
+<br/>
+<br/>
+<form method="POST" action="{{url_for('suppression_oeuvre', identifier=oeuvre.id_publ)}}" style="text-align:center">
+	<div>
+        <br/>
+       <p name="oeuvre" value="{{oeuvre.id_publ}}">Etes-vous sûr de vouloir procéder à cette suppression ?</p>
+       <br/>
+	<div>
+	<br/>
+	<div>
+        <button type="submit">Confirmer</button>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+ </form>
+{% endblock %}

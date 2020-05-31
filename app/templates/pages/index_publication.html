@@ -1,0 +1,47 @@
+<!--Page 'index_publication' du site -->
+
+{% extends "headerfooter.html" %}
+
+{% block titre %}| Index publications{%endblock%}
+
+{% block corps %}
+<br/>
+    <h2 style="text-align:center ">Index des publications</h2>
+    {% if oeuvres %}
+    <h2 id="titre2">Il y a {{oeuvres.total}} publications enregistrées :</h2>
+    <ul>
+        {% for oeuvre in oeuvres.items %}
+        <li><a href="{{url_for('oeuvre', id_publ=oeuvre.id_publ)}}">{{oeuvre.titre}}</a></li><br/>
+        {% endfor %}
+    </ul>
+    <nav >
+        <ul class="ul_page">
+            {% for page in oeuvres.iter_pages() %}
+            {% if page %}
+
+                    {% if page != oeuvres.page %}
+                    <li class="li_page">
+                        <a class="a_page" href="{{ url_for('index_publication', page=page) }}">{{page}}</a>
+                    </li class="li_page">
+                    {% else %}
+                    <li class="li_page">
+                        <a class="a_page">{{page}}</a>
+                    </li>
+                    {% endif %}
+
+            {% else %}
+                <li>
+                  <a>...</a>
+                </li>
+            {% endif %}
+
+        {% endfor %}
+      </ul>
+    </nav>
+
+    {% else %}
+    <br/><br/>
+        <p style="text-align: center;">La base de données est en cours de constitution.</p>
+    {% endif %}
+    <br/><br/><br/>
+{% endblock %}

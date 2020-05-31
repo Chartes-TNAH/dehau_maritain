@@ -1,0 +1,86 @@
+<!--Page d'accueil du site-->
+
+{%extends "headerfooter.html"%}
+{% block titre %}| Page d'accueil{%endblock%}
+{% block corps %}
+
+<div class="container">
+    <div class="row" style="padding-top: 5%">
+        <div class="col-2" >
+        </div>
+        <div class="col-7" >
+        <h2 style="color: #192423; text-align:center ">Bienvenue sur Réseau d'influence<br/> Dehau-Maritain !</h2>
+            <p></p>
+            <h5 style="color: #6f9a97; text-align: center; font-size: 14px">L'application web Réseau d'influence Dehau-Maritain a pour but de faire redécouvrir le réseau d'influence commun au père Pierre-Thomas Dehau o.p., homme méconnu de son temps,<br/> et à Jacques Maritain, philosophe mondialement connu.
+            </h5>
+        </div>
+        <div class="col-3" >
+        </div>
+    </div>
+</div>
+
+<div class="container" style="padding-top:2%;">
+    <div class="bd-example">
+  <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    </ol>
+    <!--Liens pour les images du carrousel et façon dont elles sont mises en page (centrées etc.)-->
+    <div class="carousel-inner">
+      <div class="carousel-item active text-center">
+        <img src="{{ url_for('static', filename='Images/dehau.jpg')}}" class="center-block w-25" alt="h-auto">
+          <div class="carousel-caption d-none d-md-block ">
+            <h5 style="font-size:10px">Le père Pierre-Thomas Dehau o.p.</h4>
+            <p style="font-size:10px">1870-1956</p>
+          </div>
+      </div>
+      <div class="carousel-item text-center">
+        <img src="{{ url_for('static', filename='Images/maritain.png')}}" class="center-block w-25" alt="h-auto">
+        <div class="carousel-caption d-none d-md-block">
+          <br/>
+          <h5 style="font-size:10px">Jacques Maritain</h4>
+          <p style="font-size:10px">1882-1973</p>
+        </div>  
+      </div>
+      <div class="carousel-item text-center">
+        <img src="{{ url_for('static', filename='Images/meudon.JPG')}}" class="center-block w-25" alt="h-auto">
+        <div class="carousel-caption d-none d-md-block">
+            <br/>
+            <h5 style="font-size:10px">Raïssa Maritain, née Oumançoff</h4>
+            <p style="font-size:10px">1883-1960</p>
+        </div>
+      </div>
+    </div>
+    <!--Mise en place des boutons-->
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+      <p></p>
+    </div>
+    </div>
+</div>
+
+<div class="container" style="padding-top:1%;">
+    <div class="row">
+        <div class="col-2" >
+        </div>
+        <div class="col-7" style="text-align:center;" >
+            <p style="font-weight:bold; color: #415d5b;">Consultez les différentes <a href="{{url_for('index_intellectuels')}}">notices</a> de ces intellectuels ayant vécu entre la fin du XIXe siècle et le début du XXe siècle<br/> pour mieux appréhender le croisement des réseaux et les différents cercles d'appartenance du père Dehau et de Jacques Maritain.<p>
+            <p style="color: #415d5b;">Vous y trouverez leurs principaux éléments biobibliographiques<p>
+            
+            <p style="font-style:italic;">Les données de la base de données sont majoritairement issues de Wikipedia, et du mémoire de master 1 de Laure Rossignol, sur l'influence du père Dehau, sous la direction du professeur Jacques-Olivier Boudon. Elles ne sont bien-sûr pas exhaustives.</p><br/>
+            <p>Pour aider à enrichir cette base de données, inscrivez-vous <a href="{{url_for('inscription')}}"> ici</a> sans plus tarder !</p>
+            <p style="font-style:italic;font-size: 14px;">Cette application a été réalisée par Laure Rossignol dans le cadre du Master 2 Technologies Numériques Appliquées à l'Histoire de l'École Nationale des Chartes.</p>
+        </div>
+        <div class="col-3" >
+        </div>
+</div>
+
+{% endblock %}

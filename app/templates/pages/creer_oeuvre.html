@@ -1,0 +1,40 @@
+<!--Page 'creer_oeuvre' du site -->
+
+
+{% extends "headerfooter.html" %}
+
+{% block titre %}| Ajout d'une oeuvre{%endblock%}
+
+{% block corps %}
+	<header>
+		<br/>
+		<br/>
+		<h2 style="text-align:center ">Ajout d'une oeuvre</h2>
+		<br/>
+		<p style="font-style:italic;font-size: 16px;" style="text-align:center">Pour ajouter une nouvelle oeuvre à la base de données, complétez le formulaire et cliquez sur "Ajouter".<br/>*Les champs précédés d'un astérisque sont obligatoires !</p>
+		<h1 id="titre1"></h1>
+	</header>
+	<form method="POST" action="{{url_for('creation_oeuvre', id_intel=intellectuell.id_intel)}}">
+		<div>
+			<label for="new_titre">*Titre de l'oeuvre</label>
+			<div>
+				<input type="text" name="new_titre" maxlength="300">
+			</div>
+			</div>
+		<div>
+			<label for="new_date_publ">*Date de la publication</label>
+			<div>
+				<input type="text" name="new_date_publ" placeholder="AAAA" minlength="4"maxlength="4">
+			</div>
+		</div>
+		<div>
+			<label for="new_editeur">Résumé</label>
+			<div>
+				<input type="text">
+			</div>
+		</div>
+		<div>
+			<button type="submit">Ajouter</button>
+		</div>
+	</form>
+{% endblock %}

@@ -1,0 +1,35 @@
+<!--Page 'connexion' du site -->
+
+{% extends "headerfooter.html" %}
+
+{% block titre %}| Connexion{%endblock%}
+
+{% block corps %}
+<br/>
+<br/>
+<h2 style="color: #192423; text-align:center ">Connexion</h2>
+<div class = "container" style="padding-top: 5%; padding-bottom: 5%; text-align:center">
+<p style="font-style:italic;font-size: 16px;" style="text-align:center">Veuillez renseigner les champs suivants et cliquer sur "Connexion".<br/> Si vous n'êtes pas inscrits, cliquez sur "Inscription"</p>
+  <br/>
+<form method="POST" action="{{url_for('connexion')}}">
+    <div>
+      <label>Identifiant</label>
+      <div >
+        <input type="text" name="login" placeholder="Nom d'utilisateur">
+      </div>
+    </div>
+    <br/>
+    <div >
+      <label>Mot de passe</label>
+      <div >
+        <input type="password" placeholder="Mot de passe" name="motdepasse">
+      </div>
+    </div>
+    <br/>
+    <div>
+      <button type="submit"><a class="btn btn-light" >Connexion</a></button>
+      <button><a class="btn btn-info" href="{{url_for('inscription')}}">Inscription</a></button>
+    </div>
+</form>
+</div>
+{% endblock %}

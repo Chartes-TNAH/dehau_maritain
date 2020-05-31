@@ -1,0 +1,56 @@
+<!--Page galerie et index des intellectuels du site -->
+
+{%extends "headerfooter.html"%}
+
+{% block corps %}
+<!-- Sur cette page se trouve la construction des notices abrégées pour les intellectuels. Un héritage du template
+headerfooter en premier lieu, puis la mise en forme bootstrap ci-dessous-->
+<h4 style="padding-top:5% ; padding-bottom:5% ; text-align:center; font-size: 18px;">Le père Pierre-Thomas Dehau o.p. et Jacques Maritain : <br/>un réseau commun d'influence à (re)découvrir !</h4>
+<h4 style="padding-top:1% ; padding-bottom:1% ; text-align:center; font-size: 14px;">Galerie des principaux intellectuels en lien avec le père Dehau et Jacques Maritain</h4>
+<!--Tout d'abord, on teste si on a des éléments dans la base de données et sinon, on affiche un message d'erreur -->
+    {%if intellectuells%}
+            {% for intellectuell in intellectuells %}
+                <div class ="container">
+                    <div class="row" style="margin-bottom: 2% ; padding-bottom: 2%; border-bottom:1px solid black">
+                        <div class ="col-3">
+                        <!--Certains intellectuels n'ont pas de photo. Pour eux une image type est affichée,
+                            tirée du dossier app/statics/Images.
+                            VERIFIER POUR LES AUTRES SI L'IMAGE EST LIBRE DE DROIT-->
+                            {% if not intellectuell.image_lien %}
+                                <a href="{{ url_for('intellectuell', id_intel=intellectuell.id_intel) }}"><img src="{{ url_for('static', filename='Images/anonyme2.jpg')}}" class="rounded-circle" style="width:150px; height:200px;"></a>
+                            {% else %}
+                                <a href="{{ url_for('intellectuell', id_intel=intellectuell.id_intel) }}"><img src="{{intellectuell.image_lien}}" class="rounded-circle" style="width:150px; height:200px"></a>
+                            {% endif %}
+                        </div>
+                        <div class="col-sm-4" >
+                            <a href="{{ url_for('intellectuell', id_intel=intellectuell.id_intel) }}"><h5 style="color:#547875 ">{{intellectuell.prenom}} {{ intellectuell.nom }}</h5></a>
+                            <dl>
+                             <dt>Date de naissance</dt><dd>{{intellectuell.date_naissance}}</dd>
+                            <dt>Date de mort</dt><dd>{{intellectuell.date_mort}}</dd>
+                            </dl>
+                        </div>
+                        <div class="col-sm-4">
+                            <dl>
+                                <dt>Description</dt><dd>{{intellectuell.profession_biographie}}</dd>
+                                </dd>
+                                <!--iiiiiiiiiiiii-->
+                                <dt>Membre</dt>
+                                <!--Pour chaque intellectuel, afficher son - ses occupations par le biais de la relation n-n-->
+
+                                <!--être lié à organisation-->
+                                {% for organisation in intellectuell.organisation%}
+                                <dd>{{organisation.nom_organisation}}</dd>
+                                <dd>{{organisation.description_org}}</dd>
+                                 {% endfor  %}
+                            </dl>
+                        </div >
+                        <div class="col-sm-1" style="background-color:#abc4c2 ; max-width:4%"></div>
+                        </div>
+                </div>
+            {% endfor %}
+    {% else %}
+    <br/>
+        <p style="text-align: center;">La base de données est en cours de constitution.</p>
+    {% endif %}
+    <br/><br/><br/>
+{% endblock %}

@@ -1,0 +1,35 @@
+
+{% extends "headerfooter.html" %}
+
+{% block titre %}| Modification oeuvre{%endblock%}
+
+{% block corps %}
+	<header>
+		<br/>
+		<h2 style="text-align:center ">Modification des données d'une oeuvre</h2>
+		<p style="font-style:italic;font-size: 16px;" style="text-align:center">Pour modifier les données d'une oeuvre déjà existante, complétez le formulaire et cliquez sur "Modifier".<br/>*Les champs précédés d'un astérisque sont obligatoires !</p>
+	</header>
+	<form method="POST" action="{{url_for('modification_oeuvre', identifier=oeuvre.id_publ)}}">
+		<div>
+			<label for="Titre">*Titre de l'oeuvre</label>
+			<div>
+				<input type="text" name="Titre" maxlength="300" value="{{oeuvre.titre}}">
+			</div>
+		</div>
+		<div>
+			<label for="Date_publ">*Date de la publication</label>
+			<div>
+				<input type="text" name="Date_publ" placeholder="AAAA" maxlength="4" value="{{oeuvre.date_publ}}">
+			</div>
+		</div>
+		<div>
+			<label for="Resume">Résumé de l'oeuvre</label>
+			<div>
+				<input type="text" name="Resume" {% if oeuvre.resume %} value="{{oeuvre.resume}}" {% endif %}>
+			</div>
+		</div>
+		<div>
+			<button type="submit" value="créer">Modifier</button>
+		</div>
+	</form>
+{% endblock %}

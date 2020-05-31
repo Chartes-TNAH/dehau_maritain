@@ -1,0 +1,49 @@
+
+<!--Page 'recherche' du site -->
+
+{% extends "headerfooter.html" %}
+
+{% block titre %}| Recherche{%endblock%}
+
+{% block corps %}
+  <header>
+	<br/>
+	<h2 style="text-align:center ">Résultats de votre recherche</h2>
+  </header>
+  <header>
+	{% if resultats %}
+	<br/>
+	<h3 id="titre3">{{resultats.total}} intellectuels répondent à votre requête</h3>
+  </header>
+  <ul>
+	{% for intellectuell in resultats.items %}
+	<li><a href="{{url_for('intellectuell', id_intel=intellectuell.id_intel)}}"> {{intellectuell.prenom}} {{intellectuell.nom}}</a></li><br/>
+	{% endfor %}
+  </ul>
+  <nav>
+	<ul>
+	  {% for page in resultats.iter_pages() %}
+			{% if page %}
+
+			  {% if page != resultats.page %}
+				<li>
+					<a href="{{ url_for('recherche', keyword=keyword, page=page) }}">{{page}}</a>
+				</li>
+			  {% else %}
+				<li>
+				  <a>{{page}} <span>(actuelle)</span></a>
+				</li>
+			  {% endif %}
+
+			{% else %}
+				<li>
+				  <a>...</a>
+				</li>
+			{% endif %}
+
+	  {% endfor %}
+	</ul>
+  </nav> 
+  {% endif %}
+  <br/><br/><br/>
+{% endblock %}

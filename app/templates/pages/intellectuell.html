@@ -1,0 +1,104 @@
+{%extends "headerfooter.html"%}
+<!-- Sur cette page se trouve la mise en forme de la page correspondant à la notice complète de l'intellectuel. On y accède par différentes requêtes via des url_for 
+(disséminées notamment dans la page intellectuels.html et resultats.html-->
+{% block corps %}
+    {% if intellectuell %}
+        <div class="container">
+            <div class="row" style="padding-top:5%;">
+                <div class ="col-1">
+                    <h4 style="color:#547875">{{intellectuell.prenom}} {{ intellectuell.nom }}</h4>
+                </div>
+             <div class="row" style="margin-bottom: 2% ; padding-bottom: 2%; border-bottom:1px solid black">
+                <div class ="col-1">
+                </div>
+                 <div class ="col-7">
+                 <!--Comme certains champs de la base de données sont vides, on utilise des requêtes vides qui affichent
+                  des valeurs différentes en fonction du résultat.-->
+                     <dl>
+                         {% if intellectuell.citation_general %}
+                            <dt>Citation d'ordre général</dt><dd>{{intellectuell.citation_general}}</dd>
+                         {% else %}
+                            <p> </p>
+                         {% endif %}
+                         {% if intellectuell.citation_sur_dehau %}
+                            <dt>Citation sur le père Dehau</dt><dd>{{intellectuell.citation_sur_dehau}}</dd>
+                         {% else %}
+                            <p> </p>
+                         {% endif %}
+                        {% if intellectuell.citation_sur_maritain %}
+                            <dt>Citation sur Jacques Maritain</dt><dd>{{intellectuell.citation_sur_maritain}}</dd>
+                         {% else %}
+                            <p> </p>
+                         {% endif %}
+                         {% if intellectuell.date_naissance %}
+                            <dt>Date de naissance</dt><dd>{{intellectuell.date_naissance}}</dd>
+                         {% else %}
+                            <p> </p>
+                         {% endif %}
+                         {% if intellectuell.date_mort %}
+                            <dt>Date de mort</dt><dd>{{intellectuell.date_mort}}</dd>
+                         {% else %}
+                            <p> </p>
+                         {% endif %}
+                         {% if intellectuell.profession_biographie %}
+                            <dt>Profession, titres</dt><dd>{{intellectuell.profession_biographie}}</dd>
+                         {% else %}
+                            <p> </p>
+                         {% endif %}
+                            <!-- Si l'intellectuel fait partie d'une organisation-->
+                         {% if intellectuell.organisations %}
+                             <dt>Cercles d'appartenance</dt>
+                             <!-- Afficher la - les organisations-->
+                             {% for organisation in intellectuell.organisations%}
+                                <dd>{{organisation.nom_organisation}}</dd><br/>
+                                <dd>{{organisation.description_org}}</dd>
+                             {% endfor  %}
+                         {% else %}
+                            <p> </p>
+                         {% endif %}
+                         {% if intellectuell.biographie %}
+                            <dt>Biographie</dt><dd>{{intellectuell.biographie}}</dd>
+                         {% else %}
+                            <p> </p>
+                         {% endif %}
+                            <!-- Si l'intellectuel a publié des ouvrages-->
+                         {% if intellectuell.oeuvres %}
+                             <dt>Sélection d'ouvrages publiés</dt>
+                             <!-- Afficher les publications -->
+                             {% for oeuvre in intellectuell.oeuvress%}
+                                <dd>{{oeuvres.titre}}</dd>
+                                <dd>{{oeuvres.date_publ}}</dd>
+                             {% endfor  %}
+                         {% else %}
+                            <p> </p>
+                         {% endif %}
+
+                      </dl>
+                </div>
+             <!-- Certains intellectuels ont des images, d'autres non ; lorsqu'ils n'en ont pas, on a choisi d'importer
+             une image par défaut qui se trouve dans le dossier statics/Images-->
+                <div class="col-4" style="padding-top: 8%">
+                    {% if not intellectuell.image_lien%}
+                        <img src="{{ url_for('static', filename='Images/anonyme2.jpg')}}" class="rounded-circle" style="width:300px; height:400px;">
+                     {% else %}
+                         <img src="{{intellectuell.image_lien}}" class="rounded-circle" style="width:300px; height:400px">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h4 style="padding-top:5% ; padding-bottom:5% ; text-align:center">Oups !</h4>
+        <p style="text-align:center">La notice que vous recherchez n'existe pas ou plus.</p>
+    {% endif %}
+
+{% if current_user.is_authenticated %}
+<div style="text-align:center">
+    <p>
+        <a href="{{url_for('creation_oeuvre', id_intel=intellectuell.id_intel)}}">Ajouter une oeuvre</a>
+    </p>
+</div>
+{% endif %}
+{% endblock %}
+
+
+

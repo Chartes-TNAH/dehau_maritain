@@ -1,0 +1,47 @@
+<!--Page 'inscription' du site -->
+
+{% extends "headerfooter.html" %}
+
+{% block titre %}| Inscription{%endblock%}
+
+{% block corps %}
+<div class = "container" style="padding-top: 5%; padding-bottom: 5%; text-align:center">
+<h2 style="color: #192423; text-align:center ">Inscription</h2><br/>
+<p style="font-style:italic;font-size: 16px;" style="text-align:center">Veuillez renseigner les champs suivants et cliquer sur "Inscription".<br/>*Les champs précédés d'un astérisque sont obligatoires</p>
+<br/>
+  <form method="POST" action="{{url_for('inscription')}}">
+    <div>
+      <label for="register-login">*Nom d'utilisateur</label>
+      <div>
+        <input type="text" name="login">
+      </div>
+    </div>
+    <br/>
+    <div>
+      <label for="register-nom">*Nom</label>
+      <div>
+        <input type="text" placeholder="Votre nom pour les crédits" name="nom">
+      </div>
+    </div>
+    <br/>
+    <div>
+      <label for="register-email">*Email</label>
+      <div>
+        <input type="email" placeholder="email@example.com" name="email">
+      </div>
+    </div>
+    <br/>
+    <div>
+      <label for="register-password">*Mot de passe</label>
+      <div>
+        <input type="password" placeholder="Mot de passe" name="motdepasse">
+      </div>
+    </div>
+    <br/>
+    <div>
+      <button class="btn btn-info" type="submit">S'inscrire</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}
