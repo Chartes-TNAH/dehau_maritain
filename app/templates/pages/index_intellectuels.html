@@ -9,7 +9,7 @@ headerfooter en premier lieu, puis la mise en forme bootstrap ci-dessous-->
 <h4 style="padding-top:1% ; padding-bottom:1% ; text-align:center; font-size: 14px;">Galerie des principaux intellectuels en lien avec le père Dehau et Jacques Maritain</h4>
 <!--Tout d'abord, on teste si on a des éléments dans la base de données et sinon, on affiche un message d'erreur -->
     {%if intellectuells%}
-            {% for intellectuell in intellectuells %}
+            {% for intellectuell in intellectuells.items %}
                 <div class ="container">
                     <div class="row" style="margin-bottom: 2% ; padding-bottom: 2%; border-bottom:1px solid black">
                         <div class ="col-3">
@@ -32,7 +32,6 @@ headerfooter en premier lieu, puis la mise en forme bootstrap ci-dessous-->
                         <div class="col-sm-4">
                             <dl>
                                 <dt>Description</dt><dd>{{intellectuell.profession_biographie}}</dd>
-                                </dd>
                                 <!--iiiiiiiiiiiii-->
                                 <dt>Membre</dt>
                                 <!--Pour chaque intellectuel, afficher son - ses occupations par le biais de la relation n-n-->

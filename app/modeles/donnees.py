@@ -65,7 +65,7 @@ class Publications(db.Model):
 	titre = db.Column(db.Text)
 	date_publ = db.Column(db.Text)
 	resume = db.Column(db.Text)
-	publ_intel_id = db.Column(db.Text)
+	# publ_intel_id = db.Column(db.Text)
 	#Jointure
 	#Les relations many to one sont identifiées par des clefs étrangères du côté de la relation simple.
 	publications_id_intell = db.Column(db.Integer, db.ForeignKey('intellectuel.id_intel')) #
@@ -139,9 +139,8 @@ class Publications(db.Model):
 		except Exception as erreur:
 			return False, [str(erreur)]
 
+	# @staticmethod permet d'intéragir avec une classe pour un objet qui n'existe pas encore.
 	@staticmethod
-	#@staticmethod permet d'intéragir avec une classe pour un objet qui n'existe pas encore.
-
 	def modifier_publications(Id_publ, Titre, Date_publ, Resume):
 		"""
 		Fonction qui permet de modifier les informations d'une publication dans la base de données (modifications rendues possibles par un utilisateur).

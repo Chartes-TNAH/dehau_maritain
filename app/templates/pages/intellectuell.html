@@ -14,7 +14,7 @@
                  <div class ="col-7">
                  <!--Comme certains champs de la base de données sont vides, on utilise des requêtes vides qui affichent
                   des valeurs différentes en fonction du résultat.-->
-                     <dl>
+                     <ul>
                          {% if intellectuell.citation_general %}
                             <dt>Citation d'ordre général</dt><dd>{{intellectuell.citation_general}}</dd>
                          {% else %}
@@ -46,10 +46,10 @@
                             <p> </p>
                          {% endif %}
                             <!-- Si l'intellectuel fait partie d'une organisation-->
-                         {% if intellectuell.organisations %}
+                         {% if intellectuell.organisation %}
                              <dt>Cercles d'appartenance</dt>
                              <!-- Afficher la - les organisations-->
-                             {% for organisation in intellectuell.organisations%}
+                             {% for organisation in intellectuell.organisation%}
                                 <dd>{{organisation.nom_organisation}}</dd><br/>
                                 <dd>{{organisation.description_org}}</dd>
                              {% endfor  %}
@@ -62,13 +62,15 @@
                             <p> </p>
                          {% endif %}
                             <!-- Si l'intellectuel a publié des ouvrages-->
-                         {% if intellectuell.oeuvres %}
+                         {% if intellectuell.publications %}
                              <dt>Sélection d'ouvrages publiés</dt>
                              <!-- Afficher les publications -->
-                             {% for oeuvre in intellectuell.oeuvress%}
-                                <dd>{{oeuvres.titre}}</dd>
-                                <dd>{{oeuvres.date_publ}}</dd>
+                             <dd><ul>
+                             {% for oeuvre in intellectuell.publications %}
+                                <li>{{oeuvre.titre}} ({{oeuvre.date_publ}})</li>
                              {% endfor  %}
+                             </ul>
+                             </dd>
                          {% else %}
                             <p> </p>
                          {% endif %}
