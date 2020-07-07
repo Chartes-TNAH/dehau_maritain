@@ -10,12 +10,12 @@ Cette application se concentre donc particulièrement sur les personnes fréquen
 ## Description des fonctionnalités de l'application
 
 Cette application permet de :
-	- consulter un index des intellectuels, de leurs oeuvres.
-	- consulter les notices biobibliographiques des intellectuels
-	- faire une recherche rapide
-	- faire une recherche à facettes 
-	- créer un compte et pouvoir ainsi créer, modifier ou supprimer les publications 
-	- télécharger la base de données
+* consulter un index des intellectuels, de leurs oeuvres.
+* consulter les notices biobibliographiques des intellectuels
+* faire une recherche rapide
+* faire une recherche à facettes 
+* créer un compte et pouvoir ainsi créer, modifier ou supprimer les publications 
+* télécharger la base de données
 
 
 ## Développement de l'application 
