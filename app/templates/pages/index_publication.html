@@ -11,21 +11,21 @@
     <h2 id="titre2">Il y a {{oeuvres.total}} publications enregistrées :</h2>
     <ul>
         {% for oeuvre in oeuvres.items %}
-        <li><a href="{{url_for('oeuvre', id_publ=oeuvre.id_publ)}}">{{oeuvre.titre}}</a></li><br/>
+        <li><a href="{{url_for('oeuvre', id_publ=oeuvre.id_publ)}}">{{oeuvre.titre}}</a></li>
         {% endfor %}
     </ul>
     <nav >
-        <ul class="ul_page">
+        <ul class="pagination">
             {% for page in oeuvres.iter_pages() %}
             {% if page %}
 
                     {% if page != oeuvres.page %}
-                    <li class="li_page">
-                        <a class="a_page" href="{{ url_for('index_publication', page=page) }}">{{page}}</a>
-                    </li class="li_page">
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('index_publication', page=page) }}">{{page}}</a>
+                    </li>
                     {% else %}
-                    <li class="li_page">
-                        <a class="a_page">{{page}}</a>
+                    <li class="page-item">
+                        <a class="page-link">{{page}}</a>
                     </li>
                     {% endif %}
 

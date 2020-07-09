@@ -79,7 +79,7 @@ def intellectuell(id_intel):
 	"""
 	unique_intell = Intellectuel.query.get(id_intel)
 	#On fait des jointures pour pouvoir afficher sur la page des intellectuels des données provenant des Publications
-	oeuvres = unique_intell.oeuvres
+	oeuvres = unique_intell.publications
 	return render_template("pages/intellectuell.html", nom="dehau_maritain", intellectuell=unique_intell, oeuvres=oeuvres)
 
 @app.route("/index_publication")
@@ -134,16 +134,16 @@ def creation_oeuvre(id_intel):
 	intellectuel = Intellectuel.query.get(id_intel)
 
 	if request.method == "POST":
-		statut, donnees = Publications.creer_oeuvres(
-		new_titre = request.form.get("new_titre", None),
-		new_date_publ = request.form.get("new_date_premiere_pub", None),
-		new_resume = request.form.get("resume", None), 
-		id_intel = id_intel
+		statut, donnees = Publications.creer_publications(
+			new_titre = request.form.get("new_titre", None),
+			new_date_publ = request.form.get("new_date_publ", None),
+			new_resume = request.form.get("resume", None),
+			id_intel = id_intel
 		)
 
 		if statut is True:
 			flash("Ajout d'une nouvelle oeuvre", "success")
-			return redirect("/index_intellectuels")
+			return redirect(url_for(".oeuvre", id_publ=donnees.id_publ))
 		else:
 			flash("L'ajout d'une nouvelle oeuvre a échoué pour les raisons suivantes : " + ", ".join(donnees), "danger")
 			return render_template("pages/creer_oeuvre.html", intellectuell=intellectuel)

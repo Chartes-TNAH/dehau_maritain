@@ -40,7 +40,7 @@ app = Flask(
 app.config['SECRET_KEY'] = '5F3EAXjUf?%,)h#R92y9aq5'
 # Le secret key est un paramètre utilisé pour les sessions ou tout ce qui impliquerait des éléments de sécurité avancée 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./dehau_maritain.sqlite'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../doc/dehau_maritain.sqlite'
 # Lien avec la base de données sqlite
 
 app.config['SQLALCHEMY_ECHO'] = True

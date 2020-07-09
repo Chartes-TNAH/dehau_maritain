@@ -5,7 +5,7 @@ from app.app import app
 from app.app import db
 
 
-db.create_all()
+# db.create_all()
 
 
 if __name__ == "__main__":
